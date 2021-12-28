@@ -7,6 +7,7 @@
 print("This is a debug message")
 import numpy as np
 
+
 img = np.zeros((20, 20))
 pt1 = [4, 4]
 pt2 = [12, 12]

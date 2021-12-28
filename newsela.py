@@ -23,6 +23,7 @@ def get_ngrams(text, n):
     return [' '.join(grams) for grams in n_grams]
 
 
+
 def main():
     file_path = "C:\\Users\\ravis\\Desktop\\newsela\\quiz_questions.json"
     f = open(file_path)

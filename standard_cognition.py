@@ -32,11 +32,7 @@ class TemplateMatchingExample:
         zero_matrix = np.zeros((template_rows, template_cols))
         for row in range(0, image_rows - template_rows + 1):
             for col in range(0, image_cols - template_cols + 1):
-                print(row, col, template_rows, template_cols)
-
                 image_crop = self.image[row:row + template_rows][col:col + template_cols]
-
-                print(image_crop)
                 difference_crop = np.array(image_crop) - np.array(template)
                 if difference_crop == np.array(zero_matrix):
                     print('template found at:', [[row, col], [row + template_rows, col, template_cols]])

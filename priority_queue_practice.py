@@ -23,6 +23,7 @@ class employee:
 		return self.yos < nxt.yos
 
 
+
 # creating objects
 e1 = employee('Anish', 'manager', 3, 24000)
 e2 = employee('kathy', 'programmer', 2, 15000)

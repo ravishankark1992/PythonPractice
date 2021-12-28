@@ -26,4 +26,4 @@ def main():
         'F': []
     }
     #root = TreeNode(val, left, right)
-    solution_object.isValidBST(root)
+    #solution_object.isValidBST(root)

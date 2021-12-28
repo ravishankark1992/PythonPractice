@@ -24,6 +24,7 @@ def calculate_probablity(n):
 
 
 
+
 prob = calculate_probablity(3)
 print(prob)
 """

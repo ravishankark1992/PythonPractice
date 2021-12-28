@@ -107,6 +107,7 @@ def main():
     encoded_patient_info = col_trans.fit_transform(patient_info)
     print('training')
     X_train, X_test, y_train, y_test = train_test_split(encoded_patient_info, model_target, test_size=0.73,
+
                                                         random_state=42)
     kernel = 1.0 * RBF(1.0)
     gpc = GaussianProcessClassifier(kernel=kernel, random_state=0).fit(X_train, y_train)
@@ -114,6 +115,7 @@ def main():
     print('training data size', len(model_target))
     print('missing_counter', missing_counter)
     print(len(age_dict))
+
 
 
 main()

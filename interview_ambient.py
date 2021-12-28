@@ -43,7 +43,6 @@ def crowd_count(people, threshold):
                 crowd_list.append([first_idx, second_idx])
     # print("crowd_list: ",len(crowd_list))
     print(pair_look_up)
-
     return len(crowd_list)
 
     def search(pair_look_up):

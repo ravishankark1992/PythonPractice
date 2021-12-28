@@ -17,3 +17,4 @@ print(product_matrix)
 product_matrix[0][0]=0
 test_out = precomputed==product_matrix
 print(test_out, test_out.all())
+

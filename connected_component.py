@@ -112,6 +112,5 @@ def main():
     blob_counter_value = counter_object.blob_counter(image)
     print(blob_counter_value)
 
-
 # Imput image: image= [[]]
 main()
