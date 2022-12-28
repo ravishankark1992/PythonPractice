@@ -33,7 +33,7 @@ print(prob)
 # if coin_is_fair:
 import random
 
-bag = [['H', 'T']] * 9 + [['H', 'H']]
+bag = [["H", "T"]] * 9 + [["H", "H"]]
 
 n = 0
 k = 0
@@ -43,10 +43,10 @@ while n < 1000:
 
     outcome = [random.choice(coin) for _ in range(5)]
 
-    if outcome == ['H'] * 6:
+    if outcome == ["H"] * 6:
         n += 1
         last_flip = random.choice(coin)
-        if last_flip == 'H':
+        if last_flip == "H":
             k += 1
 
 print(k / n)

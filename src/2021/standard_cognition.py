@@ -8,7 +8,7 @@ image = [
     [1, 2, 4, 5, 6, 7],
     [1, 2, 4, 5, 6, 7],
     [1, 2, 4, 5, 6, 7],
-    [1, 2, 4, 5, 6, 7]
+    [1, 2, 4, 5, 6, 7],
 ]
 
 template = [[4, 5, 6], [7, 8, 9]]
@@ -16,6 +16,7 @@ template = [[4, 5, 6], [7, 8, 9]]
 # Expected Output: [[0,2], [1,4]] # [start, end]
 
 import numpy as np
+
 
 class TemplateMatchingExample:
     def __init__(self, image):
@@ -32,10 +33,15 @@ class TemplateMatchingExample:
         zero_matrix = np.zeros((template_rows, template_cols))
         for row in range(0, image_rows - template_rows + 1):
             for col in range(0, image_cols - template_cols + 1):
-                image_crop = self.image[row:row + template_rows][col:col + template_cols]
+                image_crop = self.image[row : row + template_rows][
+                    col : col + template_cols
+                ]
                 difference_crop = np.array(image_crop) - np.array(template)
                 if difference_crop == np.array(zero_matrix):
-                    print('template found at:', [[row, col], [row + template_rows, col, template_cols]])
+                    print(
+                        "template found at:",
+                        [[row, col], [row + template_rows, col, template_cols]],
+                    )
                     return [[row, col], [row + template_rows, col, template_cols]]
         return [[-1, -1], [-1, -1]]
 

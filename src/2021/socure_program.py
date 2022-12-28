@@ -53,18 +53,22 @@ blank_img = np.zeros((20, 20))
 
 def draw_circle(img, centre_point, radius):
     # left quadrant to top point
-    left_point = [centre_point[0], centre_point[1]-4]
-    top_point = [centre_point[0]-4, centre_point[1]]
+    left_point = [centre_point[0], centre_point[1] - 4]
+    top_point = [centre_point[0] - 4, centre_point[1]]
     centre_point = np.array(centre_point)
     print(left_point, top_point)
     current_point = left_point
     img[current_point] = 1
-    n=0
-    while current_point != top_point and n<100:
+    n = 0
+    while current_point != top_point and n < 100:
         print("current_point:", current_point)
         # cal distance of updated current point againt center
-        right_dist = abs(dist_fn([current_point[0]+1, current_point[1]], centre_point) - radius)
-        top_dist = abs(dist_fn([current_point[0], current_point[1]+1], centre_point) - radius)
+        right_dist = abs(
+            dist_fn([current_point[0] + 1, current_point[1]], centre_point) - radius
+        )
+        top_dist = abs(
+            dist_fn([current_point[0], current_point[1] + 1], centre_point) - radius
+        )
         dist_list = [right_dist, top_dist]
         dir = dist_list.index(min(dist_list))
         print(right_dist, top_dist)
@@ -73,7 +77,7 @@ def draw_circle(img, centre_point, radius):
         else:
             current_point = (current_point[0], current_point[1] + 1)
         img[current_point] = 1
-        n+=1
+        n += 1
     return img
 
 

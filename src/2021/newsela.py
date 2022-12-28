@@ -20,8 +20,7 @@ from sklearn import svm
 
 def get_ngrams(text, n):
     n_grams = ngrams(word_tokenize(text), n)
-    return [' '.join(grams) for grams in n_grams]
-
+    return [" ".join(grams) for grams in n_grams]
 
 
 def main():

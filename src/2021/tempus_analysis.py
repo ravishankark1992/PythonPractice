@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
 from sklearn.gaussian_process import GaussianProcessClassifier
+
 # from sklearn.datasets import load_iris
 from pandas import DataFrame
 from sklearn.gaussian_process.kernels import RBF
@@ -31,8 +32,12 @@ def get_gender(gender_label):
 
 def main():
     patient_profiles_file_path = "C:\\Users\\ravis\\Downloads\\tempus_data_science_case_study\\patient_profiles.json"
-    biomarkers_file_path = "C:\\Users\\ravis\\Downloads\\tempus_data_science_case_study\\biomarkers.csv"
-    targets_file_path = "C:\\Users\\ravis\\Downloads\\tempus_data_science_case_study\\targets.csv"
+    biomarkers_file_path = (
+        "C:\\Users\\ravis\\Downloads\\tempus_data_science_case_study\\biomarkers.csv"
+    )
+    targets_file_path = (
+        "C:\\Users\\ravis\\Downloads\\tempus_data_science_case_study\\targets.csv"
+    )
 
     patient_profiles_data = load_json_file(patient_profiles_file_path)
     # biomarkers_data = pd.read_csv(biomarkers_file_path)
@@ -52,7 +57,9 @@ def main():
     for institution_detail in patient_profiles_data:
         for patient in institution_detail["patient_profiles"]:
             try:
-                target_row = targets_data.loc[targets_data["patient_id"] == patient["patient_id"]]
+                target_row = targets_data.loc[
+                    targets_data["patient_id"] == patient["patient_id"]
+                ]
                 if not target_row.empty:
                     model_target.append(target_row.target_label.values[0])
 
@@ -66,11 +73,21 @@ def main():
             age_dict[patient["patient_id"]] = patient["demographics"].get("age")
             gender_dict[patient["patient_id"]] = patient["demographics"].get("gender")
             race_dict[patient["patient_id"]] = patient["demographics"].get("race")
-            disease_sub_type_dict[patient["patient_id"]] = patient["status"].get("disease_sub_type")
-            comorbidity_index_dict[patient["patient_id"]] = patient["status"].get("comorbidity_index")
-            cohort_qualifier_dict[patient["patient_id"]] = patient["status"].get("cohort_qualifier")
-            smoking_status_dict[patient["patient_id"]] = patient["status"].get("smoking_status")
-            months_since_diagnosis_dict[patient["patient_id"]] = patient["status"].get("months_since_diagnosis")
+            disease_sub_type_dict[patient["patient_id"]] = patient["status"].get(
+                "disease_sub_type"
+            )
+            comorbidity_index_dict[patient["patient_id"]] = patient["status"].get(
+                "comorbidity_index"
+            )
+            cohort_qualifier_dict[patient["patient_id"]] = patient["status"].get(
+                "cohort_qualifier"
+            )
+            smoking_status_dict[patient["patient_id"]] = patient["status"].get(
+                "smoking_status"
+            )
+            months_since_diagnosis_dict[patient["patient_id"]] = patient["status"].get(
+                "months_since_diagnosis"
+            )
 
             row = [
                 patient["patient_id"],
@@ -81,41 +98,48 @@ def main():
                 patient["status"].get("comorbidity_index"),
                 patient["status"].get("cohort_qualifier"),
                 patient["status"].get("smoking_status"),
-                patient["status"].get("months_since_diagnosis")
+                patient["status"].get("months_since_diagnosis"),
             ]
 
             model_input_data.append(row)
     model_input_data = np.array(model_input_data)
-    patient_info = pd.DataFrame(model_input_data[:, 1:], columns=[  # 'patient_id',
-        'age',
-        'gender',
-        'race',
-        'disease_sub_type',
-        'comorbidity_index',
-        'cohort_qualifier',
-        'smoking_status',
-        'months_since_diagnosis'],
-                                )
-    col_trans = make_column_transformer((OneHotEncoder(), [
-                                                           'gender',
-                                                           'race',
-                                                           'disease_sub_type',
-                                                           'cohort_qualifier',
-                                                           'smoking_status',
-                                                           ]),
-                                        remainder='passthrough')
+    patient_info = pd.DataFrame(
+        model_input_data[:, 1:],
+        columns=[  # 'patient_id',
+            "age",
+            "gender",
+            "race",
+            "disease_sub_type",
+            "comorbidity_index",
+            "cohort_qualifier",
+            "smoking_status",
+            "months_since_diagnosis",
+        ],
+    )
+    col_trans = make_column_transformer(
+        (
+            OneHotEncoder(),
+            [
+                "gender",
+                "race",
+                "disease_sub_type",
+                "cohort_qualifier",
+                "smoking_status",
+            ],
+        ),
+        remainder="passthrough",
+    )
     encoded_patient_info = col_trans.fit_transform(patient_info)
-    print('training')
-    X_train, X_test, y_train, y_test = train_test_split(encoded_patient_info, model_target, test_size=0.73,
-
-                                                        random_state=42)
+    print("training")
+    X_train, X_test, y_train, y_test = train_test_split(
+        encoded_patient_info, model_target, test_size=0.73, random_state=42
+    )
     kernel = 1.0 * RBF(1.0)
     gpc = GaussianProcessClassifier(kernel=kernel, random_state=0).fit(X_train, y_train)
     print(gpc.predict_proba(X_test[:10, :]))
-    print('training data size', len(model_target))
-    print('missing_counter', missing_counter)
+    print("training data size", len(model_target))
+    print("missing_counter", missing_counter)
     print(len(age_dict))
-
 
 
 main()

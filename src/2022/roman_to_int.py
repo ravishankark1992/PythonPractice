@@ -4,7 +4,7 @@ conversion_lookup = {
     "XL": "XXXX",
     "XC": "LXXXX",
     "CD": "CCCC",
-    "CM": "DCCCC"
+    "CM": "DCCCC",
 }
 master_lookup = {
     "I": 1,
@@ -25,14 +25,14 @@ class Convert:
             if k in roman:
                 roman = roman.replace(k, v)
 
-        value=sum([master_lookup[char] for char in roman])
+        value = sum([master_lookup[char] for char in roman])
         return value
 
 
 from argparse import ArgumentParser
 
 parser = ArgumentParser()
-parser.add_argument('--input_roman', help="input roman letter", type=str)
+parser.add_argument("--input_roman", help="input roman letter", type=str)
 args = parser.parse_args()
 converter = Convert()
 

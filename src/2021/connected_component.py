@@ -68,8 +68,8 @@ class BlobCountingAlgorithm:
         while row < self.width:
             col = 0
             while col < self.height:
-                if (row,col) in self.visited:
-                    col+=1
+                if (row, col) in self.visited:
+                    col += 1
                     continue
                 if image[row][col] == 0:
                     self.visited.append((row, col))
@@ -83,17 +83,33 @@ class BlobCountingAlgorithm:
         return self.blob_counter_value
 
     def explore_children(self, row, col):
-        if self.width > row + 1 and (row + 1, col) not in self.visited and (
-                row + 1, col) not in self.dfs_queue and self.image[row + 1][col] == 1:
+        if (
+            self.width > row + 1
+            and (row + 1, col) not in self.visited
+            and (row + 1, col) not in self.dfs_queue
+            and self.image[row + 1][col] == 1
+        ):
             self.dfs_queue.append((row + 1, col))
-        if self.height > col + 1 and (row, col + 1) not in self.visited and (
-                row, col + 1) not in self.dfs_queue and self.image[row][col + 1] == 1:
+        if (
+            self.height > col + 1
+            and (row, col + 1) not in self.visited
+            and (row, col + 1) not in self.dfs_queue
+            and self.image[row][col + 1] == 1
+        ):
             self.dfs_queue.append((row, col + 1))
-        if row - 1 >= 0 and (row - 1, col) not in self.visited and (row - 1, col) not in self.dfs_queue and \
-                self.image[row - 1][col] == 1:
+        if (
+            row - 1 >= 0
+            and (row - 1, col) not in self.visited
+            and (row - 1, col) not in self.dfs_queue
+            and self.image[row - 1][col] == 1
+        ):
             self.dfs_queue.append((row - 1, col))
-        if col - 1 >= 0 and (row, col - 1) not in self.visited and (row, col - 1) not in self.dfs_queue and \
-                self.image[row][col - 1] == 1:
+        if (
+            col - 1 >= 0
+            and (row, col - 1) not in self.visited
+            and (row, col - 1) not in self.dfs_queue
+            and self.image[row][col - 1] == 1
+        ):
             self.dfs_queue.append((row, col - 1))
         return
 
@@ -111,6 +127,7 @@ def main():
     counter_object = BlobCountingAlgorithm(image)
     blob_counter_value = counter_object.blob_counter(image)
     print(blob_counter_value)
+
 
 # Imput image: image= [[]]
 main()

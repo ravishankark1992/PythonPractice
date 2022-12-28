@@ -16,5 +16,6 @@ def lengthOfLongestSubstring(s: str) -> int:
                 longest = current_length
     return longest
 
+
 input_string = "abcdefabax"
 print(lengthOfLongestSubstring(input_string))

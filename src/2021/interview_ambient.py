@@ -9,7 +9,9 @@ def calc_center(person_bbox):
 
 
 def distance_fn(center_1, center_2):
-    return math.sqrt((center_2[1] - center_1[1]) ** 2 + (center_2[0] - center_1[0]) ** 2)
+    return math.sqrt(
+        (center_2[1] - center_1[1]) ** 2 + (center_2[0] - center_1[0]) ** 2
+    )
 
 
 def crowd_count(people, threshold):
