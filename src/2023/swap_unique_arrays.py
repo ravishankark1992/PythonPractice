@@ -32,11 +32,9 @@ def getMaximumDistinctCount(a, b, k):
     count = 0  # swapped count
     print("original", a, b)
     for i, item in enumerate(b):
-
         if item not in list(unique_history_a.keys()):
             if k == 0:
                 break
-
             # swap
             # check for k
             print(i, item)
@@ -48,14 +46,20 @@ def getMaximumDistinctCount(a, b, k):
             print(a, b)
 
             unique_history_a[item] = dup_index
-            duplicate_index_a.pop(dup_index)
+            # duplicate_index_a.pop(dup_index)
             count += 1
             k = -1
     print(unique_history_a, duplicate_index_a)
+    print(len(unique_history_a), unique_history_a)
     return len(unique_history_a)
 
 
 if __name__ == '__main__':
+    k=3
+    a=[1,1,3,6,4,2,5,1]
+    b=[4,4,8,7,6,5,4,3]
+    getMaximumDistinctCount(a,b,k)
+    """
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
     a_count = int(input().strip())
@@ -80,4 +84,4 @@ if __name__ == '__main__':
 
     fptr.write(str(result) + '\n')
 
-    fptr.close()
+    fptr.close()"""
