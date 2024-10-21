@@ -45,3 +45,9 @@ def bfs(search_key: str, root_node: str, graph_map: Dict) -> bool:
 root_node = "A"
 search_key = "D"
 print(bfs(search_key, root_node, graph))
+
+
+from collections import deque
+l1=deque()
+l1.append('1')
+l1.append('l2')
