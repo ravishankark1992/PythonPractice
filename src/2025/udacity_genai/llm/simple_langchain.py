@@ -1,3 +1,7 @@
+import os
+# Provide openai key
+os.environ["OPENAI_API_KEY"] ="your-api-key"
+os.environ["OPENAI_API_BASE"] = "https://openai.vocareum.com/v1"
 from langchain.prompts import PromptTemplate
 from langchain import LLMChain
 from langchain.llms import OpenAI
